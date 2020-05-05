@@ -20,15 +20,6 @@ print(data.shape)
 
 print (type(False))
 
-#boolean = []
-#for length in data.dateRep:
-#    if length >= 2020-04-25
-#       booleans.append(True)
-#   else:
-#	booleans.append(False)
-
-#boolean[0:5]
-
 data['dateRep'] = pd.to_datetime(data['dateRep'])
 
 res = data[~(data['dateRep'] < '2020-04-25')]
