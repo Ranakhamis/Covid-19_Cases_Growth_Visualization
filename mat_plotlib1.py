@@ -15,6 +15,26 @@ data = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx")
 
 print(data.drop(['geoId','countryterritoryCode' ], axis=1, inplace= True))
 print(data.head(10))
+
+print(data.shape)
+
+print (type(False))
+
+#boolean = []
+#for length in data.dateRep:
+#    if length >= 2020-04-25
+#       booleans.append(True)
+#   else:
+#	booleans.append(False)
+
+#boolean[0:5]
+
+data['dateRep'] = pd.to_datetime(data['dateRep'])
+
+res = data[~(data['dateRep'] < '2020-04-25')]
+
+print(res)
+
 plt.show()
 
-#geoId countryterritoryCode
+
