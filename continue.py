@@ -13,7 +13,8 @@ def main():
     print_as_table(benford_table)
     print()
     print_as_graph(benford_table)
-
+    #concatinate=calculateBenford.add_row(res)
+    	
 def get_benford_data():
 
     """
@@ -24,8 +25,10 @@ def get_benford_data():
     benford_data = []
 
     for first_digit in range(1, 10):
-        random_factor = random.uniform(0.8, 1.2)
-        for num_count in range(1, int(1000 * calculateBenford.BENFORD_PERCENTAGES[first_digit] * random_factor)):
+        random_factor = random.uniform(0.8, 1.2) 
+#these two numbers in the random factor didn't affect anything when I changed them to random.uniform(1, 3) instead of (0.8,1.2) for example
+#nothing changes too when i put 0.10 as a random factor (didn't choose this number for a certain reason, just a random number)
+        for num_count in range(1, int(1000 * calculateBenford.BENFORD_PERCENTAGES_second[first_digit] * random_factor)):
             start = first_digit * 1000
             benford_data.append(random.randint(start, start + 1000))
 

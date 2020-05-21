@@ -13,51 +13,34 @@ import random
 
 df = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx") 
 
+#print(data.head(1000))
 print(df.info())
 
-dropped= df.drop(['geoId','countryterritoryCode','deaths' ], axis=1, inplace= True)
-print(dropped)
-#print(df.head(10))
 
-#print(df.shape)
+print(df.drop(['geoId','countryterritoryCode' ], axis=1, inplace= True))
+print(df.head(10))
+
+print(df.shape)
 
 print (type(False))
 
 df['dateRep'] = pd.to_datetime(df['dateRep'])
 
-#res = df[~(df['dateRep'] > '2020-04-25')]
-res = df[(df['dateRep'] > '2020-04-25')]
+res = df[~(df['dateRep'] < '2020-04-25')]
 
 print(res)
 
 sub= df['cases']
-#print(sub)
+print(sub)
+plt.show()
 
-#Operations for adding new rows
-def add_row(res):
-    next_day = pd.to_datetime('2020-05-09') + pd.DateOffset(days=1) 
-    if res['dateRep'].max() < next_day:
-       last_row =res.iloc[-1]
-       last_row['dateRep'] = next_day
-       return res.append(last_row)
-    return res
-#df.groupby('day').apply(add_row).reset_index(drop=True)
-concatination = add_row(res)
-#concatination.groupby('day').apply(add_row).reset_index(drop=True)
-print(concatination)
+#====================================================================================================
 
-#def future_days()
+BENFORD_PERCENTAGES = [0, 0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046]
+
+def main():
     
-
-#===============================================================================================================================================
-
-
-
-
-BENFORD_PERCENTAGES_first = [0, 0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046]
-BENFORD_PERCENTAGES_second = [0.1197, 0.1139, 0.1088, 0.1043, 0.1003, 0.0967, 0.0934, 0.0904, 0.0876, 0.0850]
-    
-def calculate(data):
+def calculate(sub):
 
     """
     Calculates a set of values from the numeric list
@@ -74,15 +57,16 @@ def calculate(data):
     for n in range(1, 10):
 
             data_frequency = first_digit_frequencies[str(n)]        
-            print (data_frequency, "data_frequency")             
+            print (data_frequency, "data_frequency") 
+            
             print ("=====================================================")    
             data_frequency_percent = data_frequency / len(sub)  
             print (data_frequency_percent,"///","data_frequency_percent")    
             print ("=====================================================")    
-            benford_frequency = len(sub) * BENFORD_PERCENTAGES_second[n]
+            benford_frequency = len(sub) * BENFORD_PERCENTAGES[n]
             print (benford_frequency, "///","benford_frequency")   
             print ("=====================================================")    
-            benford_frequency_percent = BENFORD_PERCENTAGES_second[n]
+            benford_frequency_percent = BENFORD_PERCENTAGES[n]
             print (benford_frequency_percent,"///", "benford_frequency_percent")
             print ("=====================================================")    
             difference_frequency = data_frequency - benford_frequency
@@ -91,7 +75,6 @@ def calculate(data):
             difference_frequency_percent = data_frequency_percent - benford_frequency_percent
             print (difference_frequency_percent,"///","difference_frequency_percent")     
             print ("=====================================================")   
-	    #new_predicted_data= difference_frequency	
             results.append({"n": n,
                             "data_frequency":               data_frequency,
                             "data_frequency_percent":       data_frequency_percent,
@@ -101,8 +84,6 @@ def calculate(data):
                             "difference_frequency_percent": difference_frequency_percent})
 
     return results
-
-#===================================================
-
-
+main()
+    
 
