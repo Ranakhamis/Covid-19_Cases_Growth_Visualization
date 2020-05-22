@@ -39,7 +39,8 @@ def add_row(res):
     if res['dateRep'].max() < next_day:
         last_row =res.iloc[-1]
         last_row['dateRep'] = next_day #3'aleban hena badal ma7ott last_row ha7ott groupby ba3den    
-        res['new']= last_row['dateRep'] + pd.to_timedelta(2, unit='d')      
+        res['new']= res['dateRep'] 
+        last_row['new']= last_row['dateRep'] + pd.to_timedelta(2, unit='d') #hal3ab fel last last_row['new'] 3ashan a5alliha tzeed sa7    
         return res.append(last_row, ignore_index=True )
     return res
 concatination = add_row(res)

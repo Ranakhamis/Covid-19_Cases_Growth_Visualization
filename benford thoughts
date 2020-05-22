@@ -1,0 +1,106 @@
+predicting growth from difference of frequency in benford?
+
+Benford’s law can also be used to make predictions about what the second, third and subsequent leading digits will be as well as the probabilities for certain number combinations
+
+generate the difference as ascendingly increasing numbers
+
+professionals have a benchmark what the normal levels of any particular number in a set are. 
+
+ana ta2riban 3andy l occurance bta3 l first digit bas w mafeesh l second
+
+Benford noted himself that an individual data set, such as this one, may not fit the law. However, the mean of a large number of data sets will. 
+
+===============================
+
+-Replace more rows (with each freq diff number for each digit as the first digit as the number of times of replacement and add new rows for the new days by a counter from day 10  and the next month w momken l checking yeb2a 3ala xlsx doc l adima l kanet le7ad 5 wabadel l date badal mn en l counter yebda2 mn 10 yebda2 men 6 maslan and compare) for the new cases numbers in the dataset by the sampled numbers in ascending order with days which means they will be in synch each more day the numbers will get bigger and check that these random samples are in synch with real life data not just a random number 
+ 
+-in the cases col make sampling (stratified sampling, cluster random sample, )
+-use the frequency difference for each digit as the number of times
+
+============================================================================
+ha7tag azawed l rows l gedida w a call l function bta3t today de 3ashan tewsal bel ows lel current
+================
+There are two “arguments” to iloc – a row selector, and a column selector.  For 
+data.iloc[-1] # last row of data frame 
+
+
+#loop hena 3and new_dataset de teb2a bet increase 1 day l koll row f col res['new'] bas heya mesh loop bzbt w ella mesh hateb2a waqe3eya heya +=
+
+
+ha3mel loop lel ayam mn 10 l today 3ashan 3adad l ayam b time delta
+group by 3ashan yeb2o f amakenhom
+ha3mel loop feha byemshy y fill l data f koll col lel rows de
+=====================================================================================
+===============================================================================
+grouping according to the country name w yekon l dates mazbota
+example:
+My data can have multiple events on a given date or NO events on a date. I take these events, get a count by date and plot them. However, when I plot them, my two series don't always match.
+
+https://stackoverflow.com/questions/19324453/add-missing-dates-to-pandas-dataframe
+
+all_days = pd.date_range(df.index.min(), df.index.max(), freq='D')
+df.reindex(all_days)
+=====================================================================================
+===============================================================================
+ha replace l freq difference lel 1 wel 2 ezay ?
+3al past data wel future days ?
+momken a7tag a modify l code 3ala asas first we second digit ?
+
+
+==========================================================
+eat chipotle and sushi
+
+================================================
+ta2iban momken 2 numbers yetla3o kefaaya enny ageeb koll wa7da frequency washta3'al fel sampling by 2 digits
+========================================================
+
+df.groupby('day').apply(add_row).reset_index(drop=True)
+df2= pd.DataFrame({'dateRep':['2020-05-17'],  'day':['17'], 
+		   'month':[5], 'year':[2020], 
+		   'cases':['77777'], 'countriesAndTerritories':['Afghanistan'], 
+		   'popData2018':[554], 'continentExp':['Asia'] })
+
+
+df_concat= pd.concat([res, df2], ignore_index=True)
+print(df_concat)
+
+#de 3amalet print bas men 3'er ma yekon l koll l ayam d koll l belad w kaman makanetsh feha grouping bey add f a5er row
+feh haga bte3mel grouping 3ammatan
+
+===========================================================================
+
+def add_row(res):
+    next_day = pd.to_datetime(' 2020-05-10') + pd.DateOffset(days=1)
+    if res['dateRep'].max() < next_day:
+       last_row =res.iloc[-1]
+       last_row['dateRep'] = next_day
+       return res.append(last_row)
+    return res
+concatination = add_row(res)
+print(concatination)
+
+de ma3amaltesh haga w f awel satr lamma 3'ayart l date b today 3amalet 0000:00:00 ganb l 3ady f dateRep
+w bey2ol en byekteb 3ala slice feha value aslan wana mesh 3ayza keda
+w mesh fahma l code bta3ha
+==========================================================================
+
+t = df[~df.duplicated('day', 'last')]
+df.append(
+    t.assign(
+        dateRep=pd.to_datetime('today') + pd.DateOffset(years=1)
+    ).pipe(lambda d: d[d.dateRep > t.dateRep]),
+    ignore_index=True).sort_values(['day', 'dateRep'])
+=====================================================================
+def concat(res)
+    df2= pd.DataFrame({'dateRep':['2020-05-17'],  'day':['17'], 
+            'month':[5], 'year':[2020], 
+            'cases':['77777'], 'countriesAndTerritories':['Afghanistan'], 
+            'popData2018':[554], 'continentExp':['Asia'] })
+
+    df_concat= pd.concat([res, df2], ignore_index=True)
+    return df_concat
+    x=df.groupby('day').apply(concat).reset_index(drop=True)
+
+print(x)
+=================================================
+
