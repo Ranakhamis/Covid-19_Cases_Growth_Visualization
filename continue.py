@@ -13,7 +13,7 @@ def main():
     print_as_table(benford_table)
     print()
     print_as_graph(benford_table)
-    #concatinate=calculateBenford.add_row(res)
+
     	
 def get_benford_data():
 

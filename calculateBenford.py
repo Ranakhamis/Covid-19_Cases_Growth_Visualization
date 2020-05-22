@@ -10,6 +10,7 @@ import collections
 import random
 import benfordslaw
 import random
+from datetime import timedelta
 
 df = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx") 
 
@@ -18,7 +19,6 @@ print(df.info())
 dropped= df.drop(['geoId','countryterritoryCode','deaths' ], axis=1, inplace= True)
 print(dropped)
 #print(df.head(10))
-
 #print(df.shape)
 
 print (type(False))
@@ -35,19 +35,17 @@ sub= df['cases']
 
 #Operations for adding new rows
 def add_row(res):
-    next_day = pd.to_datetime('2020-05-09') + pd.DateOffset(days=1) 
+    next_day = pd.to_datetime('today') + pd.DateOffset(days=1) 
     if res['dateRep'].max() < next_day:
-       last_row =res.iloc[-1]
-       last_row['dateRep'] = next_day
-       return res.append(last_row)
+        last_row =res.iloc[-1]
+        last_row['dateRep'] = next_day #3'aleban hena badal ma7ott last_row ha7ott groupby ba3den    
+        res['new']= last_row['dateRep'] + pd.to_timedelta(2, unit='d')      
+        return res.append(last_row, ignore_index=True )
     return res
-#df.groupby('day').apply(add_row).reset_index(drop=True)
 concatination = add_row(res)
-#concatination.groupby('day').apply(add_row).reset_index(drop=True)
 print(concatination)
 
-#def future_days()
-    
+
 
 #===============================================================================================================================================
 
