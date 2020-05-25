@@ -1,15 +1,26 @@
-predicting growth from difference of frequency in benford?
-
-Benford’s law can also be used to make predictions about what the second, third and subsequent leading digits will be as well as the probabilities for certain number combinations
-
-generate the difference as ascendingly increasing numbers
-
-professionals have a benchmark what the normal levels of any particular number in a set are. 
-
-ana ta2riban 3andy l occurance bta3 l first digit bas w mafeesh l second
 
 Benford noted himself that an individual data set, such as this one, may not fit the law. However, the mean of a large number of data sets will. 
 
+dropped2= df.drop(['dateRep' ], axis=1, inplace= True)
+keep in mind that when i tried by this line to drop dateRep to prevent redundancy in code it didn't remove it
+ta2riban 3ashan 7asal 3aleha operations
+
+length = res.shape [ 0 ]
+        start = res [ 'day' ].iloc [ 0 ]
+        count = int ( length + 12 )
+        last_row = pd.date_range ( start, periods = count, freq = 'D' )
+
+
+ #next_day = pd.to_datetime('2020-05-09') + pd.DateOffset(days=1) 
+    #if res['dateRep'].max() < next_day:
+        #last_row =res.iloc[0]
+        #last_row['dateRep'] = next_day #groupby ba3den    
+    #res['new']= res['dateRep'] 
+    #last_row['new']= pd.to_datetime(last_row['dateRep']) + pd.to_timedelta(2, unit='d') 
+    #last_row['new'] = last_row['dateRep'] #+ pd.DateOffset(days=1)
+    #res.append(pd.DataFrame({'new': pd.date_range(start=res.new.iloc[-1], periods=6, freq='D', closed='right')}))
+    ##dates = pd.date_range(start='2020-05-11', end='2020-05-30').to_frame()
+    ##pd.merge(res, dates, left_on='new', right_on=0,how='outer').sort_values(by=['new']).drop(columns=0)
 ===============================
 
 -Replace more rows (with each freq diff number for each digit as the first digit as the number of times of replacement and add new rows for the new days by a counter from day 10  and the next month w momken l checking yeb2a 3ala xlsx doc l adima l kanet le7ad 5 wabadel l date badal mn en l counter yebda2 mn 10 yebda2 men 6 maslan and compare) for the new cases numbers in the dataset by the sampled numbers in ascending order with days which means they will be in synch each more day the numbers will get bigger and check that these random samples are in synch with real life data not just a random number 

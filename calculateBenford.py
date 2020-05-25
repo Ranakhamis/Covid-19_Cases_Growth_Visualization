@@ -10,13 +10,14 @@ import collections
 import random
 import benfordslaw
 import random
-from datetime import timedelta
+from datetime import datetime, date, time, timedelta
+import time
 
-df = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx") 
+df = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx",parse_dates=['dateRep']) 
 
 print(df.info())
 
-dropped= df.drop(['geoId','countryterritoryCode','deaths' ], axis=1, inplace= True)
+dropped= df.drop(['geoId','countryterritoryCode','deaths','popData2018' ], axis=1, inplace= True)
 print(dropped)
 #print(df.head(10))
 #print(df.shape)
@@ -33,16 +34,16 @@ print(res)
 sub= df['cases']
 #print(sub)
 
-#Operations for adding new rows
+#Operations for adding new rows with future dates
 def add_row(res):
-    next_day = pd.to_datetime('today') + pd.DateOffset(days=1) 
-    if res['dateRep'].max() < next_day:
-        last_row =res.iloc[-1]
-        last_row['dateRep'] = next_day #3'aleban hena badal ma7ott last_row ha7ott groupby ba3den    
-        res['new']= res['dateRep'] 
-        last_row['new']= last_row['dateRep'] + pd.to_timedelta(2, unit='d') #hal3ab fel last last_row['new'] 3ashan a5alliha tzeed sa7    
-        return res.append(last_row, ignore_index=True )
-    return res
+    res['dateRep']= pd.to_datetime('today')	   
+    numdays = 100
+    dateList = []
+    today = datetime.today()	
+    base = today
+    date_list = [base + timedelta(days=x) for x in range(numdays)]
+    return res.append(date_list, ignore_index=True )
+
 concatination = add_row(res)
 print(concatination)
 
