@@ -35,18 +35,19 @@ sub= df['cases']
 #print(sub)
 
 #Operations for adding new rows with future dates
-def add_row(res):
-    res['dateRep']= pd.to_datetime('today')	   
-    numdays = 100
+def add_row(df):
+                         
+    numdays = 1
     dateList = []
     today = datetime.today()	
     base = today
-    date_list = [base + timedelta(days=x) for x in range(numdays)]
-    return res.append(date_list, ignore_index=True )
-
-concatination = add_row(res)
+    date_list= [base + timedelta(days=x) for x in range(numdays)]   
+    return df.append(date_list, ignore_index=True )
+#result = df.groupby('countriesAndTerritories').apply(add_row)
+concatination= add_row(df)
+concatination.to_excel("output.xlsx")  
 print(concatination)
-
+print(df.dtypes)
 
 
 #===============================================================================================================================================
