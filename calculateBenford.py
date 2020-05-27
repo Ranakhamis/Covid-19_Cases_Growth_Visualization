@@ -15,34 +15,25 @@ import time
 
 df = pd.read_excel("COVID-19-geographic-disbtribution-worldwide.xlsx",parse_dates=['dateRep']) 
 
-print(df.info())
-
 dropped= df.drop(['geoId','countryterritoryCode','deaths','popData2018' ], axis=1, inplace= True)
-print(dropped)
-#print(df.head(10))
-#print(df.shape)
-
 print (type(False))
 
 df['dateRep'] = pd.to_datetime(df['dateRep'])
 
 #res = df[~(df['dateRep'] > '2020-04-25')]
 res = df[(df['dateRep'] > '2020-04-25')]
-
-print(res)
-
 sub= df['cases']
-#print(sub)
-
+df2 = pd.DataFrame( columns = ['dateRep',  'day',  'month',  'year',  'cases' ,'countriesAndTerritories','continentExp'])
 #Operations for adding new rows with future dates
 def add_row(df):
                          
-    numdays = 1
-    dateList = []
+    numdays = 10
+    #dateList = []
     today = datetime.today()	
     base = today
-    date_list= [base + timedelta(days=x) for x in range(numdays)]   
-    return df.append(date_list, ignore_index=True )
+    date_list= [base + timedelta(days=x) for x in range(numdays)] 
+    df2['dateRep']=date_list  
+    return df.append(df2, ignore_index=True )
 #result = df.groupby('countriesAndTerritories').apply(add_row)
 concatination= add_row(df)
 concatination.to_excel("output.xlsx")  
