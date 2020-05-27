@@ -20,27 +20,38 @@ print (type(False))
 
 df['dateRep'] = pd.to_datetime(df['dateRep'])
 
-#res = df[~(df['dateRep'] > '2020-04-25')]
-res = df[(df['dateRep'] > '2020-04-25')]
+res = df[(df['dateRep'] > '2020-04-25')] #res = df[~(df['dateRep'] > '2020-04-25')]
 sub= df['cases']
+
+#Adding new dataframe for new rows concatination
 df2 = pd.DataFrame( columns = ['dateRep',  'day',  'month',  'year',  'cases' ,'countriesAndTerritories','continentExp'])
+
 #Operations for adding new rows with future dates
-def add_row(df):
+def add_rows(df):
                          
     numdays = 10
     #dateList = []
     today = datetime.today()	
-    base = today
+    base = today #- number
+    #from 10/5 till today 
     date_list= [base + timedelta(days=x) for x in range(numdays)] 
-    df2['dateRep']=date_list  
-    return df.append(df2, ignore_index=True )
-#result = df.groupby('countriesAndTerritories').apply(add_row)
-concatination= add_row(df)
-concatination.to_excel("output.xlsx")  
-print(concatination)
-print(df.dtypes)
+    df2['dateRep']=date_list 
+    result= df.append(df2, ignore_index=True )	 
+    return result
 
+concatination= add_rows(df)
+#concatination.to_excel("output.xlsx")  
+print (concatination)
 
+def repeat_rows(df):
+    countries_counter= len(df['countriesAndTerritories'].unique().tolist())	
+    for x in range(countries_counter):
+            repeat = concatination.groupby('countriesAndTerritories')
+    return repeat
+
+show= repeat_rows(df)
+print(show)	
+ 
 #===============================================================================================================================================
 
 
